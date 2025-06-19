@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Buscar Post</h2>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Buscar</button>
+</form>
+{% if resultado %}
+    <ul>
+        {% for post in resultado %}
+            <li>{{ post.titulo }} - {{ post.autor.nombre }}</li>
+        {% empty %}
+            <li>No se encontraron resultados.</li>
+        {% endfor %}
+    </ul>
+{% endif %}
+{% endblock %}
